@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dandy Solutions — Premium Consulting</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --beige: #f5f0e8;
+      --beige-dark: #ede5d8;
+      --beige-mid: #e8dfd0;
+      --white: #ffffff;
+      --charcoal: #1a1a1a;
+      --mid: #4a4a4a;
+      --light-text: #7a7a7a;
+      --accent: #b8975a;
+      --accent-light: #d4b483;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--white);
+      color: var(--charcoal);
+      line-height: 1.6;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed; top: 0; width: 100%; z-index: 100;
+      background: rgba(255,255,255,0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--beige-dark);
+      padding: 0 5%;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 72px;
+    }
+    .nav-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; font-weight: 700;
+      color: var(--charcoal); letter-spacing: -0.5px;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      text-decoration: none; color: var(--mid);
+      font-size: 0.875rem; font-weight: 500; letter-spacing: 0.3px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta {
+      background: var(--charcoal); color: var(--white);
+      padding: 0.6rem 1.5rem; border-radius: 4px;
+      font-size: 0.875rem; font-weight: 500; text-decoration: none;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--accent); }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      background: linear-gradient(135deg, var(--beige) 0%, var(--white) 60%, var(--beige-dark) 100%);
+      display: flex; align-items: center;
+      padding: 120px 5% 80px;
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; top: -20%; right: -10%;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(184,151,90,0.08) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .hero-content { max-width: 680px; position: relative; }
+    .hero-tag {
+      display: inline-block;
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 2px;
+      text-transform: uppercase; color: var(--accent);
+      background: rgba(184,151,90,0.1);
+      padding: 0.4rem 1rem; border-radius: 2px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 5vw, 4.5rem);
+      font-weight: 700; line-height: 1.1;
+      color: var(--charcoal); margin-bottom: 1.5rem;
+      letter-spacing: -1px;
+    }
+    .hero h1 em { font-style: italic; color: var(--accent); }
+    .hero p {
+      font-size: 1.125rem; color: var(--mid);
+      max-width: 520px; margin-bottom: 2.5rem;
+      font-weight: 300; line-height: 1.8;
+    }
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn-primary {
+      background: var(--charcoal); color: var(--white);
+      padding: 1rem 2rem; border-radius: 4px;
+      font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      letter-spacing: 0.3px; transition: all 0.2s;
+    }
+    .btn-primary:hover { background: var(--accent); transform: translateY(-1px); }
+    .btn-secondary {
+      background: transparent; color: var(--charcoal);
+      padding: 1rem 2rem; border-radius: 4px;
+      font-size: 0.9rem; font-weight: 600; text-decoration: none;
+      border: 1.5px solid var(--beige-dark); transition: all 0.2s;
+    }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-stats {
+      margin-top: 4rem; display: flex; gap: 3rem;
+    }
+    .stat-item h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem; font-weight: 700; color: var(--charcoal);
+    }
+    .stat-item p { font-size: 0.8rem; color: var(--light-text); letter-spacing: 0.5px; text-transform: uppercase; }
+
+    /* SECTION SHARED */
+    section { padding: 100px 5%; }
+    .section-label {
+      font-size: 0.72rem; font-weight: 700; letter-spacing: 2.5px;
+      text-transform: uppercase; color: var(--accent); margin-bottom: 0.75rem;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 3.5vw, 2.8rem); font-weight: 700;
+      color: var(--charcoal); line-height: 1.2; margin-bottom: 1rem;
+    }
+    .section-sub {
+      font-size: 1rem; color: var(--mid); max-width: 540px;
+      font-weight: 300; line-height: 1.8;
+    }
+    .section-header { margin-bottom: 60px; }
+
+    /* SERVICES */
+    #services { background: var(--beige); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5px;
+      background: var(--beige-mid);
+      border: 1.5px solid var(--beige-mid);
+    }
+    .service-card {
+      background: var(--white);
+      padding: 2.5rem;
+      transition: all 0.3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::after {
+      content: '';
+      position: absolute; bottom: 0; left: 0;
+      width: 0; height: 2px; background: var(--accent);
+      transition: width 0.3s;
+    }
+    .service-card:hover::after { width: 100%; }
+    .service-card:hover { transform: translateY(-2px); }
+    .service-icon {
+      width: 48px; height: 48px; margin-bottom: 1.5rem;
+      background: var(--beige); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem;
+    }
+    .service-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; font-weight: 600; color: var(--charcoal);
+      margin-bottom: 0.75rem;
+    }
+    .service-card p { font-size: 0.9rem; color: var(--mid); line-height: 1.7; font-weight: 300; }
+    .service-link {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      margin-top: 1.25rem; font-size: 0.8rem; font-weight: 600;
+      color: var(--accent); text-decoration: none; letter-spacing: 0.3px;
+      transition: gap 0.2s;
+    }
+    .service-link:hover { gap: 0.7rem; }
+
+    /* TESTIMONIALS */
+    #testimonials { background: var(--white); }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    .testimonial-card {
+      background: var(--beige);
+      padding: 2.5rem; border-radius: 2px;
+      position: relative;
+    }
+    .quote-mark {
+      font-family: 'Playfair Display', serif;
+      font-size: 5rem; line-height: 0.7;
+      color: var(--accent-light); margin-bottom: 1.25rem; display: block;
+    }
+    .testimonial-card blockquote {
+      font-size: 1rem; line-height: 1.75; color: var(--mid);
+      font-weight: 300; font-style: italic; margin-bottom: 1.5rem;
+    }
+    .testimonial-author { display: flex; align-items: center; gap: 1rem; }
+    .author-avatar {
+      width: 44px; height: 44px; border-radius: 50%;
+      background: var(--beige-dark);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Playfair Display', serif;
+      font-size: 1rem; color: var(--accent); font-weight: 700;
+    }
+    .author-name { font-weight: 600; font-size: 0.9rem; color: var(--charcoal); }
+    .author-title { font-size: 0.78rem; color: var(--light-text); }
+    .stars { color: var(--accent); font-size: 0.9rem; margin-bottom: 0.25rem; }
+
+    /* CONTACT */
+    #contact { background: var(--beige); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1.4fr; gap: 80px;
+      align-items: start;
+    }
+    .contact-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem; color: var(--charcoal); margin-bottom: 1rem;
+    }
+    .contact-info p { font-size: 0.95rem; color: var(--mid); line-height: 1.8; font-weight: 300; margin-bottom: 2rem; }
+    .contact-detail {
+      display: flex; align-items: center; gap: 0.75rem;
+      margin-bottom: 1rem; font-size: 0.9rem; color: var(--mid);
+    }
+    .contact-detail span { font-size: 1.1rem; }
+    form { display: grid; gap: 1.25rem; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    input, textarea, select {
+      width: 100%; padding: 0.875rem 1.1rem;
+      border: 1.5px solid var(--beige-mid); border-radius: 4px;
+      font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      color: var(--charcoal); background: var(--white);
+      transition: border-color 0.2s; outline: none;
+    }
+    input:focus, textarea:focus, select:focus { border-color: var(--accent); }
+    input::placeholder, textarea::placeholder { color: #b0b0b0; }
+    textarea { resize: vertical; min-height: 130px; }
+    .form-submit {
+      background: var(--charcoal); color: var(--white);
+      padding: 1rem 2.5rem; border: none; border-radius: 4px;
+      font-family: 'Inter', sans-serif; font-size: 0.9rem;
+      font-weight: 600; cursor: pointer; letter-spacing: 0.3px;
+      transition: all 0.2s; width: fit-content;
+    }
+    .form-submit:hover { background: var(--accent); transform: translateY(-1px); }
+
+    /* FOOTER */
+    footer {
+      background: var(--charcoal); color: rgba(255,255,255,0.6);
+      padding: 2.5rem 5%;
+      display: flex; justify-content: space-between; align-items: center;
+      font-size: 0.82rem;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.2rem; color: var(--white); font-weight: 700;
+    }
+    .footer-logo span { color: var(--accent-light); }
+
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .hero-stats { gap: 2rem; flex-wrap: wrap; }
+      .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+      .form-row { grid-template-columns: 1fr; }
+      footer { flex-direction: column; gap: 1rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Dandy <span>Solutions</span></div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#testimonials">Clients</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <a href="#contact" class="nav-cta">Get in Touch</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <span class="hero-tag">Strategic Consulting</span>
+      <h1>Where Bold Ideas Meet <em>Brilliant</em> Execution</h1>
+      <p>Dandy Solutions partners with ambitious organizations to navigate complexity, unlock growth, and build lasting competitive advantage.</p>
+      <div class="hero-actions">
+        <a href="#services" class="btn-primary">Explore Services</a>
+        <a href="#contact" class="btn-secondary">Schedule a Call</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item"><h3>150+</h3><p>Clients Served</p></div>
+        <div class="stat-item"><h3>12yr</h3><p>Industry Experience</p></div>
+        <div class="stat-item"><h3>98%</h3><p>Client Retention</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-header">
+      <div class="section-label">What We Do</div>
+      <h2 class="section-title">Comprehensive Consulting<br>Across Every Dimension</h2>
+      <p class="section-sub">From strategic planning to operational transformation, we deliver measurable results at every stage of your journey.</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon">🎯</div>
+        <h3>Strategic Advisory</h3>
+        <p>Defining clear direction and competitive positioning to help leadership teams make confident, high-stakes decisions.</p>
+        <a href="#contact" class="service-link">Learn More →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">📈</div>
+        <h3>Growth & Revenue</h3>
+        <p>Identifying untapped market opportunities, optimizing pricing strategies, and building scalable go-to-market engines.</p>
+        <a href="#contact" class="service-link">Learn More →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">⚙️</div>
+        <h3>Operational Excellence</h3>
+        <p>Streamlining processes, reducing friction, and building efficient systems that scale with your organization.</p>
+        <a href="#contact" class="service-link">Learn More →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🔄</div>
+        <h3>Change Management</h3>
+        <p>Guiding organizations through transformation with frameworks that bring teams along and ensure lasting adoption.</p>
+        <a href="#contact" class="service-link">Learn More →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">💡</div>
+        <h3>Innovation Strategy</h3>
+        <p>Building the structures, culture, and pipelines that turn creative ideas into differentiated products and services.</p>
+        <a href="#contact" class="service-link">Learn More →</a>
+      </div>
+      <div class="service-card">
+        <div class="service-icon">🤝</div>
+        <h3>Executive Coaching</h3>
+        <p>Developing high-performance leadership through targeted coaching programs tailored to individual growth goals.</p>
+        <a href="#contact" class="service-link">Learn More →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section id="testimonials">
+    <div class="section-header">
+      <div class="section-label">Client Stories</div>
+      <h2 class="section-title">Trusted by Leaders<br>Across Industries</h2>
+      <p class="section-sub">The results speak for themselves — but our clients say it better.</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <span class="quote-mark">"</span>
+        <blockquote>Dandy Solutions transformed how we approach strategic planning. Their frameworks gave us clarity we hadn't had in years, and within 18 months we'd entered two new markets successfully.</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">MK</div>
+          <div>
+            <div class="stars">★★★★★</div>
+            <div class="author-name">Marcus Klein</div>
+            <div class="author-title">CEO, Vertex Capital Group</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <span class="quote-mark">"</span>
+        <blockquote>The operational audit they conducted uncovered $2.4M in annual savings we didn't know existed. Phenomenal attention to detail and a team that genuinely cares about outcomes.</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">SR</div>
+          <div>
+            <div class="stars">★★★★★</div>
+            <div class="author-name">Sofia Reeves</div>
+            <div class="author-title">COO, Meridian Health Systems</div>
+          </div>
+        </div>
+      </div>
+      <div class="testimonial-card">
+        <span class="quote-mark">"</span>
+        <blockquote>Working with Dandy felt less like hiring consultants and more like gaining a true strategic partner. They challenged our assumptions in the best possible way and helped us build something lasting.</blockquote>
+        <div class="testimonial-author">
+          <div class="author-avatar">JT</div>
+          <div>
+            <div class="stars">★★★★★</div>
+            <div class="author-name">James Thornton</div>
+            <div class="author-title">Founder, Parallax Ventures</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-label">Get in Touch</div>
+        <h3 class="section-title" style="font-size:2rem">Let's Start a Conversation</h3>
+        <p>Ready to unlock your organization's full potential? Tell us about your challenge and we'll be in touch within one business day.</p>
+        <div class="contact-detail"><span>📧</span> hello@dandysolutions.com</div>
+        <div class="contact-detail"><span>📞</span> +1 (415) 000-0000</div>
+        <div class="contact-detail"><span>📍</span> San Francisco, CA</div>
+      </div>
+      <form onsubmit="handleSubmit(event)">
+        <div class="form-row">
+          <input type="text" placeholder="First Name" required />
+          <input type="text" placeholder="Last Name" required />
+        </div>
+        <input type="email" placeholder="Work Email" required />
+        <input type="text" placeholder="Company" />
+        <select>
+          <option value="" disabled selected>Area of Interest</option>
+          <option>Strategic Advisory</option>
+          <option>Growth & Revenue</option>
+          <option>Operational Excellence</option>
+          <option>Change Management</option>
+          <option>Innovation Strategy</option>
+          <option>Executive Coaching</option>
+        </select>
+        <textarea placeholder="Tell us about your challenge or goals..."></textarea>
+        <button type="submit" class="form-submit">Send Message</button>
+      </form>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Dandy <span>Solutions</span></div>
+    <div>© 2026 Dandy Solutions. All rights reserved.</div>
+    <div>Privacy · Terms</div>
+  </footer>
+
+  <script>
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = e.target.querySelector('.form-submit');
+      btn.textContent = 'Message Sent ✓';
+      btn.style.background = '#5a8a6a';
+      setTimeout(() => { btn.textContent = 'Send Message'; btn.style.background = ''; }, 3000);
+    }
+  </script>
+</body>
+</html>
